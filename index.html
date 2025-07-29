@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="pageTitle">alexpinheiro.site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configuração do TailwindCSS para cores personalizadas
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Novas cores para o tema escuro
+                        'dark-background': '#1a1a2e',    // Um azul muito escuro, quase preto para o fundo principal
+                        'dark-surface': '#252540',       // Um tom um pouco mais claro para cartões e seções
+                        'neon-blue': '#00f0ff',          // Um ciano vibrante para os toques de "neon" (usaremos no primary-blue)
+                        'light-text': '#e0e0e0',         // Um cinza claro para o texto principal
+                        'lighter-text': '#f0f0f0',       // Um cinza quase branco para títulos
+                        
+                        // Redefinição das cores existentes para o novo tema, mantendo a compatibilidade
+                        'primary-blue': '#00f0ff',       // Redefinido para o tom de neon
+                        'secondary-gray': '#e0e0e0',     // Texto secundário mais claro
+                        'light-gray-bg': '#252540',      // Fundo de seções (agora dark-surface)
+                        'dark-text': '#f0f0f0',          // Títulos (agora lighter-text)
+                    }
+                }
+            }
+        }
+
+        // Dicionário de traduções para os diferentes idiomas
+        const translations = {
+            'pt-BR': {
+                pageTitle: 'alexpinheiro.site',
+                navHome: 'Home',
+                navAbout: 'Sobre Mim',
+                navSkills: 'Habilidades',
+                navProjects: 'Projetos',
+                navServices: 'Serviços',
+                navContact: 'Contato',
+                homeHeading: 'Transformo desafios digitais em soluções robustas e intuitivas.',
+                homeSubheading: 'Com uma década de experiência em tecnologia e uma visão de engenheiro, eu construo o futuro que funciona.',
+                aboutTitle: 'Sobre Mim',
+                aboutP1: 'Minha paixão pela tecnologia e pelo desenvolvimento nasceu de anos de experiência prática, desvendando os desafios do hardware ao software na linha de frente da TI. Como fundador da JC Informática TechSupport, aprendi a arte de transformar problemas em soluções eficazes e a importância do suporte real. Atualmente, estou elevando essa expertise com o Bacharelado em Engenharia de Software, focado em Python, HTML5, CSS3, JavaScript e SQL, para construir sistemas ainda mais robustos e inovadores.',
+                aboutP2: 'Acredito que o código limpo e a atenção minuciosa aos detalhes são o alicerce para criar produtos que não apenas funcionam, mas geram impacto e facilitam a vida no dia a dia. Quando não estou imerso em linhas de código ou aprimorando minhas habilidades, dedico-me a explorar novas fronteiras tecnológicas, sempre buscando aprimoramento contínuo para entregar o futuro hoje.',
+                skillsTitle: 'Minhas Habilidades',
+                catWebDev: 'Desenvolvimento Web',
+                catLanguages: 'Linguagens de Programação',
+                catTools: 'Ferramentas e Plataformas',
+                catConcepts: 'Conceitos e Expertise',
+                catITServices: 'Serviços de TI',
+                projectsTitle: 'Meus Projetos',
+                projSchoolTitle: 'Sistema Escolar (Python)',
+                projSchoolDesc: 'Um sistema de gerenciamento acadêmico para simplificar a administração de estudantes, professores, disciplinas e turmas, com dados persistidos em arquivos JSON.',
+                projSchoolTech: 'Tecnologias: Python, JSON',
+                projSpotifyTitle: 'Spotify Playlist Downloader (Python)',
+                projSpotifyDesc: 'Um script Python eficiente para automatizar o download de músicas a partir de playlists do Spotify, convertendo e baixando faixas para uso offline.',
+                projSpotifyTech: 'Tecnologias: Python',
+                projOlimpiadasTitle: 'Olimpíadas - Imersão Dev Google Gemini',
+                projOlimpiadasDesc: 'Aplicação web interativa desenvolvida na Imersão Dev Google Gemini 2024, focada no tema das Olimpíadas. Demonstra habilidades em construção de interfaces dinâmicas com HTML, CSS e JavaScript.',
+                projOlimpiadasTech: 'Tecnologias: HTML5, CSS3, JavaScript',
+                servicesTitle: 'Meus Serviços',
+                servDevTitle: 'Desenvolvimento de Sistemas Personalizados',
+                servDevItem1: '<strong class="font-medium">Gestão de Estoque Inteligente:</strong> Desenvolvimento de sistemas completos para controle de estoque, incluindo funcionalidades como geração e leitura de QR Codes, relatórios analíticos detalhados e um painel administrativo intuitivo.',
+                servDevItem2: '<strong class="font-medium">Plataformas de Agendamento Online:</strong> Criação de soluções de agendamento robustas, com autenticação via Google, integração de pagamentos via Mercado Pago, e painel administrativo completo.',
+                servAutoTitle: 'Automação e Otimização de Processos',
+                servAutoItem1: '<strong class="font-medium">Criação de Scripts e Bots:</strong> Desenvolvimento de automações personalizadas em Python para otimizar tarefas repetitivas, extração de dados e melhoria de produtividade.',
+                servConsultTitle: 'Consultoria e Suporte em TI',
+                servConsultItem1: '<strong class="font-medium">Consultoria em Soluções Tecnológicas:</strong> Assessoria especializada para identificação e implementação das melhores tecnologias para otimizar operações.',
+                servConsultItem2: '<strong class="font-medium">Suporte Técnico e Manutenção de Infraestrutura:</strong> Serviços completos de suporte remoto, manutenção de hardware e software, e configuração de redes.',
+                contactTitle: 'Vamos Conectar',
+                contactP1: 'O futuro digital exige colaboração. Se você tem uma visão ambiciosa, um projeto que precisa de desenvolvimento ou busca uma análise técnica para impulsionar seus objetivos, <strong class="font-semibold">estou pronto para te auxiliar.</strong>',
+                contactP2: 'Como engenheiro, meu compromisso é com a inovação e a entrega de soluções eficientes. <strong class="font-semibold">Entre em contato e vamos construir algo grandioso juntos.</strong>',
+                contactButtonEmail: 'Entrar em contato'
+            },
+            es: {
+                pageTitle: 'alexpinheiro.site',
+                navHome: 'Inicio',
+                navAbout: 'Sobre Mí',
+                navSkills: 'Habilidades',
+                navProjects: 'Proyectos',
+                navServices: 'Servicios',
+                navContact: 'Contacto',
+                homeHeading: 'Transformo desafíos digitales en soluciones robustas e intuitivas.',
+                homeSubheading: 'Con una década de experiencia en tecnología y una visión de ingeniero, construyo el futuro que funciona.',
+                aboutTitle: 'Sobre Mí',
+                aboutP1: 'Mi pasión por la tecnología y el desarrollo nació de años de experiencia práctica, desentrañando los desafíos del hardware al software en la primera línea de TI. Como fundador de JC Informática TechSupport, aprendí el arte de transformar problemas en soluciones eficaces y la importancia del soporte real. Actualmente, estoy elevando esta experiencia con la Licenciatura en Ingeniería de Software, centrado en Python, HTML5, CSS3, JavaScript y SQL, para construir sistemas aún más robustos e innovadores.',
+                aboutP2: 'Creo que el código limpio y la atención minuciosa a los detalles son la base para crear productos que no solo funcionan, sino que generan impacto y facilitan la vida diaria. Cuando no estoy inmerso en líneas de código o mejorando mis habilidades, me dedico a explorar nuevas fronteras tecnológicas, siempre buscando la mejora continua para entregar el futuro hoy.',
+                skillsTitle: 'Mis Habilidades',
+                catWebDev: 'Desarrollo Web',
+                catLanguages: 'Lenguajes de Programación',
+                catTools: 'Herramientas y Plataformas',
+                catConcepts: 'Conceptos y Experiencia',
+                catITServices: 'Servicios de TI',
+                projectsTitle: 'Mis Proyectos',
+                projSchoolTitle: 'Sistema Escolar (Python)',
+                projSchoolDesc: 'Un sistema de gestión académica para simplificar la administración de estudiantes, profesores, asignaturas y clases, con datos persistentes en archivos JSON.',
+                projSchoolTech: 'Tecnologías: Python, JSON',
+                projSpotifyTitle: 'Descargador de Listas de Reproducción de Spotify (Python)',
+                projSpotifyDesc: 'Un script de Python eficiente diseñado para facilitar la descarga de música de las listas de reproducción de Spotify, convirtiendo y descargando pistas para uso sin conexión.',
+                projSpotifyTech: 'Tecnologías: Python',
+                projOlimpiadasTitle: 'Olimpiadas - Inmersión Dev Google Gemini',
+                projOlimpiadasDesc: 'Aplicación web interactiva desarrollada en la Inmersión Dev Google Gemini 2024, centrada en el tema de los Juegos Olímpicos. Demuestra habilidades en la construcción de interfaces dinámicas con HTML, CSS y JavaScript.',
+                projOlimpiadasTech: 'Tecnologías: HTML5, CSS3, JavaScript',
+                servicesTitle: 'Mis Servicios',
+                servDevTitle: 'Desarrollo de Sistemas Personalizados',
+                servDevItem1: '<strong class="font-medium">Gestión de Inventario Inteligente:</strong> Desarrollo de sistemas completos para el control de inventario, incluyendo funcionalidades como generación y lectura de códigos QR, informes analíticos detallados y un panel administrativo intuitivo.',
+                servDevItem2: '<strong class="font-medium">Plataformas de Programación Online:</strong> Creación de soluciones de programación robustas, con autenticación segura a través de Google, integración de pagos con Mercado Pago, y un panel administrativo completo.',
+                servAutoTitle: 'Automatización y Optimización de Procesos',
+                servAutoItem1: '<strong class="font-medium">Creación de Scripts y Bots:</strong> Desarrollo de automatizaciones personalizadas en Python para optimizar tareas repetitivas, extracción de datos y mejora de la productividad.',
+                servConsultTitle: 'Consultoría y Soporte de TI',
+                servConsultItem1: '<strong class="font-medium">Consultoría en Soluciones Tecnológicas:</strong> Asesoramiento especializado para la identificación e implementación de las mejores tecnologías para optimizar operaciones.',
+                servConsultItem2: '<strong class="font-medium">Soporte Técnico y Mantenimiento de Infraestructura:</strong> Servicios completos de soporte remoto, mantenimiento de hardware y software, y configuración de redes.',
+                contactTitle: 'Conectemos',
+                contactP1: 'El futuro digital exige colaboración. Si tienes una visión ambiciosa, un proyecto que necesita desarrollo o buscas un análisis técnico para impulsar tus objetivos, <strong class="font-semibold">estoy listo para ayudarte.</strong>',
+                contactP2: 'Como ingeniero, mi compromiso es con la innovación y la entrega de soluciones eficientes. <strong class="font-semibold">Ponte en contacto y construyamos algo grandioso juntos.</strong>',
+                contactButtonEmail: 'Contactar'
+            },
+            en: {
+                pageTitle: 'alexpinheiro.site',
+                navHome: 'Home',
+                navAbout: 'About Me',
+                navSkills: 'Skills',
+                navProjects: 'Projects',
+                navServices: 'Services',
+                navContact: 'Contact',
+                homeHeading: 'I transform digital challenges into robust and intuitive solutions.',
+                homeSubheading: 'With a decade of experience in technology and an engineer\'s vision, I build the future that works.',
+                aboutTitle: 'About Me',
+                aboutP1: 'My passion for technology and development was born from years of practical experience, unraveling challenges from hardware to software on the front lines of IT. As the founder of JC Informática TechSupport, I learned the art of transforming problems into effective solutions and the importance of real support. Currently, I am elevating this expertise with a Bachelor\'s degree in Software Engineering, focused on Python, HTML5, CSS3, JavaScript, and SQL, to build even more robust and innovative systems.',
+                aboutP2: 'I believe that clean code and meticulous attention to detail are the foundation for creating products that not only function but also generate impact and simplify daily life. When I\'m not immersed in lines of code or refining my skills, I dedicate myself to exploring new technological frontiers, always seeking continuous improvement to deliver the future today.',
+                skillsTitle: 'My Skills',
+                catWebDev: 'Web Development',
+                catLanguages: 'Programming Languages',
+                catTools: 'Tools and Platforms',
+                catConcepts: 'Concepts and Expertise',
+                catITServices: 'IT Services',
+                projectsTitle: 'My Projects',
+                projSchoolTitle: 'School System (Python)',
+                projSchoolDesc: 'An academic management system developed to simplify the administration of students, teachers, subjects, and classes, with data persisted in JSON files.',
+                projSchoolTech: 'Technologies: Python, JSON',
+                projSpotifyTitle: 'Spotify Playlist Downloader (Python)',
+                projSpotifyDesc: 'An efficient Python script designed to facilitate downloading music from Spotify playlists, converting and downloading tracks for offline use.',
+                projSpotifyTech: 'Technologies: Python',
+                projOlimpiadasTitle: 'Olympics - Google Gemini Dev Immersion',
+                projOlimpiadasDesc: 'Interactive web application developed during the Google Gemini Dev Immersion 2024, focused on the Olympics theme. Demonstrates skills in building dynamic interfaces with HTML, CSS, and JavaScript.',
+                projOlimpiadasTech: 'Technologies: HTML5, CSS3, JavaScript',
+                servicesTitle: 'My Services',
+                servDevTitle: 'Custom System Development',
+                servDevItem1: '<strong class="font-medium">Smart Inventory Management:</strong> Development of complete systems for inventory control, including features like QR Code generation and reading, detailed analytical reports, and an intuitive administrative panel.',
+                servDevItem2: '<strong class="font-medium">Online Scheduling Platforms:</strong> Creation of robust scheduling solutions, with Google authentication, integrated payments via Mercado Pago, and a comprehensive administrative panel.',
+                servAutoTitle: 'Automation and Process Optimization',
+                servAutoItem1: '<strong class="font-medium">Script and Bot Creation:</strong> Development of custom Python automations to optimize repetitive tasks, data extraction, and improve productivity.',
+                servConsultTitle: 'IT Consulting and Support',
+                servConsultItem1: '<strong class="font-medium">Technology Solutions Consulting:</strong> Specialized advice for identifying and implementing the best technologies to optimize operations.',
+                servConsultItem2: '<strong class="font-medium">Technical Support and Infrastructure Maintenance:</strong> Comprehensive remote support, hardware and software maintenance, and network configuration services.',
+                contactTitle: 'Let\'s Connect',
+                contactP1: 'The digital future demands collaboration. If you have an ambitious vision, a project that needs development, or seek technical analysis to boost your objectives, <strong class="font-semibold">I\'m ready to assist you.</strong>',
+                contactP2: 'As an engineer, my commitment is to innovation and the delivery of efficient solutions. <strong class="font-semibold">Get in touch and let\'s build something great together.</strong>',
+                contactButtonEmail: 'Get in touch'
+            }
+        };
+
+        // Função para aplicar a tradução
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang; // Define o atributo lang da tag <html>
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    // Para elementos que contêm HTML (como strong tags), use innerHTML
+                    if (key.startsWith('aboutP') || key.startsWith('contactP') || key.startsWith('servDevItem') || key.startsWith('servAutoItem') || key.startsWith('servConsultItem')) {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            // Traduzir o título da página
+            document.querySelector('title').textContent = translations[lang].pageTitle;
+        }
+
+        // Adicionar event listeners aos botões de idioma
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const lang = event.target.dataset.lang;
+                    applyLanguage(lang);
+                });
+            });
+            // Aplicar idioma padrão ao carregar a página (Português do Brasil)
+            applyLanguage('pt-BR');
+        });
+    </script>
+</head>
+
+<body class="font-sans text-light-text bg-dark-background">
+
+    <header class="bg-dark-surface shadow-lg fixed w-full z-10 top-0 rounded-b-lg">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-lighter-text hover:text-primary-blue transition-colors duration-300">Alex Pinheiro</a>
+            
+            <div class="flex items-center space-x-2 md:order-2">
+                <button class="lang-button text-2xl" data-lang="pt-BR" title="Português (Brasil)">🇧🇷</button>
+                <button class="lang-button text-2xl" data-lang="es" title="Español (España)">🇪🇸</button>
+                <button class="lang-button text-2xl" data-lang="en" title="English (USA)">🇺🇸</button>
+            </div>
+            
+            <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-light-text rounded-lg md:hidden hover:bg-dark-background focus:outline-none focus:ring-2 focus:ring-dark-background" aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-dark-background rounded-lg bg-dark-surface md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-dark-surface">
+                    <li><a href="#home" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded md:bg-transparent md:p-0" data-key="navHome">Home</a></li>
+                    <li><a href="#sobre" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded hover:bg-dark-background md:hover:bg-transparent md:p-0" data-key="navAbout">Sobre Mim</a></li>
+                    <li><a href="#habilidades" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded hover:bg-dark-background md:hover:bg-transparent md:p-0" data-key="navSkills">Habilidades</a></li>
+                    <li><a href="#projetos" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded hover:bg-dark-background md:hover:bg-transparent md:p-0" data-key="navProjects">Projetos</a></li>
+                    <li><a href="#servicos" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded hover:bg-dark-background md:hover:bg-transparent md:p-0" data-key="navServices">Serviços</a></li>
+                    <li><a href="#contato" class="block py-2 px-3 text-light-text hover:text-primary-blue font-medium transition-colors duration-300 rounded hover:bg-dark-background md:hover:bg-transparent md:p-0" data-key="navContact">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 mt-24">
+
+        <section id="home" class="text-center py-20 bg-dark-surface rounded-lg shadow-xl mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-lighter-text leading-tight mb-4" data-key="homeHeading">
+                Transformo desafios digitais em soluções robustas e intuitivas.
+            </h1>
+            <p class="text-xl md:text-2xl text-light-text" data-key="homeSubheading">
+                Com uma década de experiência em tecnologia e uma visão de engenheiro, eu construo o futuro que funciona.
+            </p>
+        </section>
+
+        <section id="sobre" class="py-16 bg-dark-surface rounded-lg shadow-xl mb-12">
+            <h2 class="text-3xl font-bold text-lighter-text mb-8 text-center" data-key="aboutTitle">Sobre Mim</h2>
+            <div class="max-w-3xl mx-auto text-lg text-light-text leading-relaxed px-4">
+                <p class="mb-4" data-key="aboutP1">Minha paixão pela tecnologia e pelo desenvolvimento nasceu de anos de experiência prática, desvendando os desafios do hardware ao software na linha de frente da TI. Como fundador da JC Informática TechSupport, aprendi a arte de transformar problemas em soluções eficazes e a importância do suporte real. Atualmente, estou elevando essa expertise com o Bacharelado em Engenharia de Software, focado em Python, HTML5, CSS3, JavaScript e SQL, para construir sistemas ainda mais robustos e inovadores.</p>
+                <p data-key="aboutP2">Acredito que o código limpo e a atenção minuciosa aos detalhes são o alicerce para criar produtos que não apenas funcionam, mas geram impacto e facilitam a vida no dia a dia. Quando não estou imerso em linhas de código ou aprimorando minhas habilidades, dedico-me a explorar novas fronteiras tecnológicas, sempre buscando aprimoramento contínuo para entregar o futuro hoje.</p>
+            </div>
+        </section>
+
+        <section id="habilidades" class="py-16 bg-dark-surface rounded-lg shadow-xl mb-12">
+    <h2 class="text-3xl font-bold text-lighter-text mb-8 text-center" data-key="skillsTitle">Minhas Habilidades</h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+        <div class="group bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-4 group-hover:text-primary-blue transition-colors duration-330" data-key="catWebDev"><i class="fas fa-code mr-2"></i> Desenvolvimento Web</h3>
+            <ul class="list-disc list-inside text-light-text space-y-2">
+                <li><i class="fab fa-html5 mr-2"></i> HTML5 & CSS3</li>
+                <li><i class="fab fa-js mr-2"></i> JavaScript</li>
+                <li><i class="fab fa-tailwind-css mr-2"></i> TailwindCSS / Bootstrap</li>
+            </ul>
+        </div>
+
+        <div class="group bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-4 group-hover:text-primary-blue transition-colors duration-330" data-key="catLanguages"><i class="fas fa-laptop-code mr-2"></i> Linguagens de Programação</h3>
+            <ul class="list-disc list-inside text-light-text space-y-2">
+                <li><i class="fab fa-python mr-2"></i> Python</li>
+                <li><i class="fas fa-database mr-2"></i> SQL</li>
+            </ul>
+        </div>
+
+        <div class="group bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-4 group-hover:text-primary-blue transition-colors duration-330" data-key="catTools"><i class="fas fa-wrench mr-2"></i> Ferramentas e Plataformas</h3>
+            <ul class="list-disc list-inside text-light-text space-y-2">
+                <li><i class="fab fa-github mr-2"></i> Git & GitHub</li>
+            </ul>
+        </div>
+
+        <div class="group bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-4 group-hover:text-primary-blue transition-colors duration-330" data-key="catConcepts"><i class="fas fa-lightbulb mr-2"></i> Conceitos e Expertise</h3>
+            <ul class="list-disc list-inside text-light-text space-y-2">
+                <li><i class="fas fa-project-diagram mr-2"></i> Lógica de Programação</li>
+                <li><i class="fas fa-brain mr-2"></i> Fundamentos de Inteligência Artificial</li>
+                <li><i class="fas fa-robot mr-2"></i> Automação e Scripts</li>
+            </ul>
+        </div>
+
+        <div class="group bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-4 group-hover:text-primary-blue transition-colors duration-330" data-key="catITServices"><i class="fas fa-tools mr-2"></i> Serviços de TI</h3>
+            <ul class="list-disc list-inside text-light-text space-y-2">
+                <li><i class="fas fa-headset mr-2"></i> Suporte Técnico e Manutenção</li>
+                <li><i class="fas fa-network-wired mr-2"></i> Configuração de Redes</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+       <section id="projetos" class="py-16 bg-dark-surface rounded-lg shadow-xl mb-12">
+    <h2 class="text-3xl font-bold text-lighter-text mb-8 text-center" data-key="projectsTitle">Meus Projetos</h2>
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+
+        <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-2" data-key="projSchoolTitle">Sistema Escolar (Python)</h3>
+            <p class="text-light-text mb-4 text-sm" data-key="projSchoolDesc">Um sistema de gerenciamento acadêmico para simplificar a administração de estudantes, professores, disciplinas e turmas, com dados persistidos em arquivos JSON.</p>
+            <p class="text-light-text text-sm font-medium mb-4" data-key="projSchoolTech">Tecnologias: Python, JSON</p>
+            <div class="flex flex-wrap gap-2">
+                <a href="https://github.com/Alexxpinheiroo/sistema-escolar-python" target="_blank" class="inline-flex items-center px-4 py-2 bg-dark-text text-dark-background text-sm font-medium rounded-md hover:bg-gray-700 transition-colors duration-300" aria-label="GitHub do Projeto Sistema Escolar">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.27 2.84 7.723 6.847 8.841.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.701-2.782.603-3.37-.905-3.37-.905-.454-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.004.07 1.53.992 1.53.992.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.119-4.555-4.949 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.7.117 2.5.342 1.909-1.294 2.747-1.025 2.747-1.025.546 1.38.202 2.397.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.339 4.69-4.566 4.942.359.307.678.915.678 1.854 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.482C19.16 19.735 22 16.283 22 12.017 22 6.484 17.523 2 12 2z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-2" data-key="projSpotifyTitle">Spotify Playlist Downloader (Python)</h3>
+            <p class="text-light-text mb-4 text-sm" data-key="projSpotifyDesc">Um script Python eficiente para automatizar o download de músicas a partir de playlists do Spotify, convertendo e baixando faixas para uso offline.</p>
+            <p class="text-light-text text-sm font-medium mb-4" data-key="projSpotifyTech">Tecnologias: Python</p>
+            <div class="flex flex-wrap gap-2">
+                <a href="https://github.com/Alexxpinheiroo/spotify-playlist-downloader" target="_blank" class="inline-flex items-center px-4 py-2 bg-dark-text text-dark-background text-sm font-medium rounded-md hover:bg-gray-700 transition-colors duration-300">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.27 2.84 7.723 6.847 8.841.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.701-2.782.603-3.37-.905-3.37-.905-.454-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.004.07 1.53.992 1.53.992.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.119-4.555-4.949 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.7.117 2.5.342 1.909-1.294 2.747-1.025 2.747-1.025.546 1.38.202 2.397.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.339 4.69-4.566 4.942.359.307.678.915.678 1.854 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.482C19.16 19.735 22 16.283 22 12.017 22 6.484 17.523 2 12 2z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-semibold text-primary-blue mb-2" data-key="projOlimpiadasTitle">Olimpíadas - Imersão Dev Google Gemini</h3>
+            <p class="text-light-text mb-4 text-sm" data-key="projOlimpiadasDesc">Aplicação web interativa desenvolvida na Imersão Dev Google Gemini 2024, focada no tema das Olimpíadas. Demonstra habilidades em construção de interfaces dinâmicas com HTML, CSS e JavaScript.</p>
+            <p class="text-light-text text-sm font-medium mb-4" data-key="projOlimpiadasTech">Tecnologias: HTML5, CSS3, JavaScript</p>
+            <div class="flex flex-wrap gap-2">
+                <a href="https://github.com/Alexxpinheiroo/Olimpiadas-imers-oDev" target="_blank" class="inline-flex items-center px-4 py-2 bg-dark-text text-dark-background text-sm font-medium rounded-md hover:bg-gray-700 transition-colors duration-300">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.27 2.84 7.723 6.847 8.841.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.701-2.782.603-3.37-.905-3.37-.905-.454-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.004.07 1.53.992 1.53.992.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.119-4.555-4.949 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.7.117 2.5.342 1.909-1.294 2.747-1.025 2.747-1.025.546 1.38.202 2.397.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.339 4.69-4.566 4.942.359.307.678.915.678 1.854 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.482C19.16 19.735 22 16.283 22 12.017 22 6.484 17.523 2 12 2z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <section id="servicos" class="py-16 bg-dark-surface rounded-lg shadow-xl mb-12">
+            <h2 class="text-3xl font-bold text-lighter-text mb-8 text-center" data-key="servicesTitle">Meus Serviços</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+
+                <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-primary-blue mb-4" data-key="servDevTitle">Desenvolvimento de Sistemas Personalizados</h3>
+                    <ul class="list-disc list-inside text-light-text space-y-3">
+                        <li data-key="servDevItem1">
+                            <strong class="font-medium">Gestão de Estoque Inteligente:</strong> Desenvolvimento de sistemas completos para controle de estoque, incluindo funcionalidades como geração e leitura de QR Codes, relatórios analíticos detalhados e um painel administrativo intuitivo.
+                        </li>
+                        <li data-key="servDevItem2">
+                            <strong class="font-medium">Plataformas de Agendamento Online:</strong> Criação de soluções de agendamento robustas, com autenticação via Google, integração de pagamentos via Mercado Pago, e painel administrativo completo.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-primary-blue mb-4" data-key="servAutoTitle">Automação e Otimização de Processos</h3>
+                    <ul class="list-disc list-inside text-light-text space-y-3">
+                        <li data-key="servAutoItem1">
+                            <strong class="font-medium">Criação de Scripts e Bots:</strong> Desenvolvimento de automações personalizadas em Python para otimizar tarefas repetitivas, extração de dados e melhoria de produtividade.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-dark-background p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-primary-blue mb-4" data-key="servConsultTitle">Consultoria e Suporte em TI</h3>
+                    <ul class="list-disc list-inside text-light-text space-y-3">
+                        <li data-key="servConsultItem1">
+                            <strong class="font-medium">Consultoria em Soluções Tecnológicas:</strong> Assessoria especializada para identificação e implementação das melhores tecnologias para otimizar operações.
+                        </li>
+                        <li data-key="servConsultItem2">
+                            <strong class="font-medium">Suporte Técnico e Manutenção de Infraestrutura:</strong> Serviços completos de suporte remoto, manutenção de hardware e software, e configuração de redes.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contato" class="py-16 bg-dark-surface rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-lighter-text mb-8 text-center" data-key="contactTitle">Vamos Conectar</h2>
+            <div class="max-w-3xl mx-auto text-lg text-light-text leading-relaxed text-center px-4">
+                <p class="mb-4" data-key="contactP1">O futuro digital exige colaboração. Se você tem uma visão ambiciosa, um projeto que precisa de desenvolvimento ou busca uma análise técnica para impulsionar seus objetivos, <strong class="font-semibold">estou pronto para te auxiliar.</strong></p>
+                <p data-key="contactP2">Como engenheiro, meu compromisso é com a inovação e a entrega de soluções eficientes. <strong class="font-semibold">Entre em contato e vamos construir algo grandioso juntos.</strong></p>
+                
+                <div class="mt-8 mb-8">
+                    <a href="mailto:alexmateus27@gmail.com" class="inline-flex items-center px-8 py-3 bg-primary-blue text-lighter-text text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-key="contactButtonEmail" aria-label="Enviar e-mail para Alex Pinheiro">
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.003 5.884L10 9.882l-8 4.006V5.884zM22 5.884L14.003 9.882l7.997 4.006V5.884zM.003 16.518l5.244-2.622 2.368 4.736-7.612-2.114zM24 16.518l-5.244-2.622-2.368 4.736 7.612-2.114zM12 12.017l-10 5.006V22h20v-4.977L12 12.017z"/></svg>
+                        Entrar em contato
+                    </a>
+                </div>
+
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/Alexxpinheiroo" target="_blank" class="text-light-text hover:text-gray-400 transition-colors duration-300" aria-label="GitHub de Alex Pinheiro">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.27 2.84 7.723 6.847 8.841.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.701-2.782.603-3.37-.905-3.37-.905-.454-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.004.07 1.53.992 1.53.992.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.119-4.555-4.949 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.7.117 2.5.342 1.909-1.294 2.747-1.025 2.747-1.025.546 1.38.202 2.397.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.339 4.69-4.566 4.942.359.307.678.915.678 1.854 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.482C19.16 19.735 22 16.283 22 12.017 22 6.484 17.523 2 12 2z"/></svg>
+                        GitHub
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/alex-pinheiro-26919ab8/" target="_blank" class="text-primary-blue hover:text-blue-800 transition-colors duration-300" aria-label="LinkedIn de Alex Pinheiro">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+
+                    <a href="https://wa.me/5555997138212" target="_blank" class="text-green-500 hover:text-green-700 transition-colors duration-300" aria-label="WhatsApp de Alex Pinheiro">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+
+                    <a href="https://www.instagram.com/alexx_pinheiroo/" target="_blank" class="text-pink-600 hover:text-pink-800 transition-colors duration-300" aria-label="Instagram de Alex Pinheiro">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.153-1.772 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark-background text-light-text py-8 text-center rounded-t-lg">
+    <div class="container mx-auto px-4">
+        <p class="text-sm">&copy; 2024 Alex Pinheiro. Todos os direitos reservados.</p>
+        <p class="text-xs mt-2">Desenvolvido com ❤️</p>
+    </div>
+    </footer>
+
+    <a href="https://wa.me/5555997138212" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50 flex items-center justify-center" aria-label="Enviar mensagem via WhatsApp">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="menu.js"></script>
+</body>
+</html>
